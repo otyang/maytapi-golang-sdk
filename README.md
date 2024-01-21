@@ -19,21 +19,18 @@ go get github.com/otyang/maytapi-golang-sdk
 ```go
 import (
     "github.com/otyang/maytapi-golang-sdk"
-	"github.com/otyang/maytapi-golang-sdk/client"
+    "github.com/otyang/maytapi-golang-sdk/client"
 )
 ```
 
 2. **Create an SDK instance:**
 
 ```go
-
-	client.ConfigPhoneID = "41456"
-	client.ConfigBaseURL = "https://api.maytapi.com/api"
-	client.ConfigToken = "a473a550-ecbc-455f-b06e-4f8d1cb9de7a"
-	client.ConfigProductID = "db295204-a195-4f52-b16a-6a6079c1eeab"
-
-    
-maytapi, err := sdk.New(true, "ConfigBaseURL", "ConfigProductID", "ConfigToken") 
+client.ConfigPhoneID = "41456"
+client.ConfigBaseURL = "https://api.maytapi.com/api"
+client.ConfigToken = "a473a550-ecbc-455f-b06e-4f8d1cb9de7a"
+client.ConfigProductID = "db295204-a195-4f52-b16a-6a6079c1eeab"    
+sdk, err := maytapi.New(true, "ConfigBaseURL", "ConfigProductID", "ConfigToken") 
 ```
 
 3. **Send a message:**
@@ -45,7 +42,7 @@ params := sdk.SendMessageParams{
     Message: "Hello from the WhatsApp SDK!",
 }
 
-response, err := maytapi.Whatsapp.SendMessage(context.Background(), params)
+response, err := sdk.Whatsapp.SendMessage(context.Background(), params)
 ```
 
 ## Key Features
