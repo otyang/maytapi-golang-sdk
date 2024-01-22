@@ -1,8 +1,7 @@
- **Here's a README.md comment for the Golang code:**
+# maytapi-golang-sdk
 
-# WhatsApp SDK for Go
 
-This SDK provides a convenient way to interact with the WhatsApp API from your Go applications, enabling you to send and manage WhatsApp messages programmatically.
+This SDK provides a convenient way to interact with the Maytapi WhatsApp API from your Go applications, enabling you to send and manage WhatsApp messages programmatically.
 
 Note: That this library at this time only implements whats needed at this point. However it has been structured to be easily extensible for more addition.
 
@@ -63,4 +62,3 @@ Contributions are welcome! Please follow the contribution guidelines.
 ## License
 
 This SDK is licensed under the MIT License.
-# maytapi-golang-sdk
