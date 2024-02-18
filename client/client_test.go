@@ -40,7 +40,7 @@ func TestMakeRequest_Success(t *testing.T) {
 		path                  = "/test-path"
 		body                  = map[string]any{"tel": 2349011112222}
 		gotAPISuccessResponse APISuccessResponse
-		client                = New(true, ts.URL, ConfigProductID, ConfigToken)
+		client                = New(true, ts.URL, "", "", "")
 	)
 
 	// 	client := New(ConfigApiKey, string(ConfigPrivateKey), ts.URL, nil)
@@ -72,7 +72,7 @@ func TestMakeRequest_Error(t *testing.T) {
 	defer ts.Close()
 
 	var (
-		client  = New(true, ts.URL, ConfigProductID, ConfigToken)
+		client  = New(true, ts.URL, "", "", "")
 		path    = "/test-path"
 		body    = map[string]any{"tel": 2349011112222}
 		success map[string]any
@@ -118,7 +118,7 @@ func TestMakeRequest_Live_Server(t *testing.T) {
 		apiSuccess APISuccessResponse
 	)
 
-	client := New(true, ConfigBaseURL, ConfigProductID, ConfigToken)
+	client := New(true, "https://api.maytapi.com/api", "", "", "")
 	httpResponse, err := client.MakeRequest(ctx, "post", path, nil, &apiSuccess)
 	assert.NoError(t, err)
 	assert.NotEmpty(t, apiSuccess)

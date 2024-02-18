@@ -35,7 +35,6 @@ type SendMessageResponse struct {
 
 // WhatsappSVC provides methods for interacting with the WhatsApp API.
 type WhatsappSVC struct {
-	// client is the underlying client for making API requests.
 	client *client.Client
 }
 
@@ -49,7 +48,7 @@ func New(client *client.Client) *WhatsappSVC {
 // Reference:  https://maytapi.com/whatsapp-api-documentation
 func (w *WhatsappSVC) SendMessage(ctx context.Context, p SendMessageParams) (*SendMessageResponse, error) {
 	var (
-		path       = fmt.Sprintf("/%s/%s/sendMessage", client.ConfigProductID, client.ConfigPhoneID)
+		path       = fmt.Sprintf("/%s/%s/sendMessage", w.client.ProductID, w.client.PhoneID)
 		apiSuccess SendMessageResponse
 	)
 
@@ -57,11 +56,9 @@ func (w *WhatsappSVC) SendMessage(ctx context.Context, p SendMessageParams) (*Se
 		p.Type = "text"
 	}
 
-	// Make the POST request to the WhatsApp API endpoint.
 	if _, err := w.client.MakeRequest(ctx, "post", path, p, &apiSuccess); err != nil {
 		return nil, err
 	}
 
-	// Return the successful response.
 	return &apiSuccess, nil
 }

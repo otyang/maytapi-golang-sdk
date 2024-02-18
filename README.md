@@ -12,36 +12,42 @@ go get github.com/otyang/maytapi-golang-sdk
 ```
 
 ## Usage
-
-1. **Import the SDK:**
-
+ 
 ```go
+package main
+
 import (
-    "github.com/otyang/maytapi-golang-sdk"
-    "github.com/otyang/maytapi-golang-sdk/client"
+	"context"
+	"fmt"
+
+	"github.com/otyang/maytapi-golang-sdk"
+	"github.com/otyang/maytapi-golang-sdk/whatsapp"
 )
-```
 
-2. **Create an SDK instance:**
+const (
+	configPhoneID   = "41456"
+	configBaseURL   = "https://api.maytapi.com/api"
+	configToken     = "test-a473a550-ecbc-455f-b06e-4f8d1cb9de7a"
+	configProductID = "test-db295204-a195-4f52-b16a-6a6079c1eeab"
+)
 
-```go
-client.ConfigPhoneID = "41456"
-client.ConfigBaseURL = "https://api.maytapi.com/api"
-client.ConfigToken = "a473a550-ecbc-455f-b06e-4f8d1cb9de7a"
-client.ConfigProductID = "db295204-a195-4f52-b16a-6a6079c1eeab"    
-sdk, err := maytapi.New(true, "ConfigBaseURL", "ConfigProductID", "ConfigToken") 
-```
+func main() {
+	maytapi := maytapi.New(true, configBaseURL, configToken, configProductID, configPhoneID)
 
-3. **Send a message:**
+	got, err := maytapi.Whatsapp.SendMessage(context.Background(), whatsapp.SendMessageParams{
+		ToNumber: "+2349093****",
+		Type:     "text",
+		Message:  `Hello, Testing the whatsapp Mayfair API service. xo martell.`,
+	})
 
-```go
-params := sdk.SendMessageParams{
-    ToNumber: "recipient_phone_number",
-    Type: "text", // default is text
-    Message: "Hello from the WhatsApp SDK!",
+	if err != nil {
+		// handle err
+	}
+
+	fmt.Println(got.Success)     // success
+	fmt.Println(got.Data.ChatID) // chat id
+	fmt.Println(got.Data.MsgID)  // msg id
 }
-
-response, err := sdk.Whatsapp.SendMessage(context.Background(), params)
 ```
 
 ## Key Features

@@ -13,7 +13,7 @@ type SDK struct {
 
 // New creates a new SDK instance, configuring it with the provided credentials.
 
-func New(debugMode bool, apiKey, privateKey, baseURL string) (*SDK, error) {
-	client := client.New(debugMode, client.ConfigBaseURL, client.ConfigProductID, client.ConfigToken)
-	return &SDK{Whatsapp: whatsapp.New(client)}, nil
+func New(debugMode bool, baseURL, token, productID, phoneID string) *SDK {
+	client := client.New(debugMode, baseURL, token, productID, phoneID)
+	return &SDK{Whatsapp: whatsapp.New(client)}
 }

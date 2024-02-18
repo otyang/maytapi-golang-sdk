@@ -8,27 +8,21 @@ import (
 	"github.com/go-resty/resty/v2"
 )
 
-var (
-	// Set global configuration values for the WhatsApp client:
-	// - PhoneID identifies the device or account for WhatsApp usage.
-	// - BaseURL specifies the base endpoint for API requests.
-	// - Token represents the authentication token for API access.
-	// - ProductID identifies the specific WhatsApp product or service.
-
-	ConfigPhoneID   = "000000"
-	ConfigBaseURL   = "https://api.maytapi.com/api"
-	ConfigToken     = ""
-	ConfigProductID = ""
-)
-
 // Client represents a client for interacting with an API
 type Client struct {
 	restyClient *resty.Client
 	debugMode   bool
+	ProductID   string
+	PhoneID     string
+	Token       string
 }
 
 // New creates a new Client instance, configuring the base URL, headers, and API token.
-func New(debugMode bool, baseURL string, productID string, token string) *Client {
+// - BaseURL specifies the base endpoint for API requests.
+// - Token represents the authentication token for API access.
+// - ProductID identifies the specific WhatsApp product or service.
+// - PhoneID identifies the device or account for WhatsApp usage.
+func New(debugMode bool, baseURL, token, productID, phoneID string) *Client {
 	// Create a new Resty client with the specified configurations.
 	clnt := resty.New().
 		SetBaseURL(baseURL).
@@ -40,6 +34,9 @@ func New(debugMode bool, baseURL string, productID string, token string) *Client
 	return &Client{
 		restyClient: clnt,
 		debugMode:   debugMode,
+		ProductID:   productID,
+		PhoneID:     phoneID,
+		Token:       token,
 	}
 }
 

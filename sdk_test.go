@@ -4,20 +4,19 @@ import (
 	"context"
 	"testing"
 
-	"github.com/otyang/maytapi-golang-sdk/client"
 	"github.com/otyang/maytapi-golang-sdk/whatsapp"
 	"github.com/stretchr/testify/assert"
 )
 
+const (
+	configPhoneID   = "41456"
+	configBaseURL   = "https://api.maytapi.com/api"
+	configToken     = "test-a473a550-ecbc-455f-b06e-4f8d1cb9de7a"
+	configProductID = "test-db295204-a195-4f52-b16a-6a6079c1eeab"
+)
+
 func TestNew(t *testing.T) {
-	client.ConfigPhoneID = "41456"
-	client.ConfigBaseURL = "https://api.maytapi.com/api"
-	client.ConfigToken = "test-a473a550-ecbc-455f-b06e-4f8d1cb9de7a"
-	client.ConfigProductID = "test-db295204-a195-4f52-b16a-6a6079c1eeab"
-
-	maytapi, err := New(true, client.ConfigBaseURL, client.ConfigProductID, client.ConfigToken)
-
-	assert.NoError(t, err)
+	maytapi := New(true, configBaseURL, configToken, configProductID, configToken)
 
 	got, err := maytapi.Whatsapp.SendMessage(context.Background(), whatsapp.SendMessageParams{
 		ToNumber: "+2349093****",
