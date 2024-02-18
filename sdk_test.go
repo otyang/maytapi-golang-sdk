@@ -19,7 +19,7 @@ func TestNew(t *testing.T) {
 	maytapi := New(true, configBaseURL, configToken, configProductID, configPhoneID)
 
 	got, err := maytapi.Whatsapp.SendMessage(context.Background(), whatsapp.SendMessageParams{
-		ToNumber: "+2349160000495",
+		ToNumber: "+2349123456789",
 		Type:     "text",
 		Message:  `Hello, Testing the whatsapp Mayfair API service. xo martell.`,
 	})
