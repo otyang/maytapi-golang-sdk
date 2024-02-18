@@ -25,10 +25,10 @@ import (
 )
 
 const (
-	configPhoneID   = "41456"
+	configPhoneID   = "44351"
 	configBaseURL   = "https://api.maytapi.com/api"
-	configToken     = "test-a473a550-ecbc-455f-b06e-4f8d1cb9de7a"
-	configProductID = "test-db295204-a195-4f52-b16a-6a6079c1eeab"
+	configToken     = "1e6bc9e1-bb76-4ce2-92ef-65f8ce206df5"
+	configProductID = "e1002b74-352f-4440-8cda-f5609fb144c8"
 )
 
 func main() {
